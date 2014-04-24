@@ -11,16 +11,6 @@
         ], factory )
 
 )( () ->
-    # Set a cookie value
-    #
-    # @namespace
-    # @name setCookie
-    # @methodOf window.cookie
-    #
-    # @param name   (string)    The name of the cookie to set
-    # @param value  (string)    The value of the cookie to set
-    # @param days   (number)    The number of days for this cookie to expire
-    #
     setCookie = ( name, value, days ) ->
         expires = ""
 
@@ -31,14 +21,6 @@
 
         document.cookie = name + "=" + value + expires + "; path=/"
 
-    # Get the value of a cookie
-    #
-    # @namespace
-    # @name getCookie
-    # @methodOf window.cookie
-    #
-    # @param name   (string)    The name of the cookie to get the value of
-    #
     getCookie = ( name ) ->
         result  = null
         lookup  = name + "="
@@ -53,19 +35,49 @@
 
         return result
 
-    # Delete (expire) a cookie
-    #
-    # @namespace
-    # @name deleteCookie
-    # @methodOf window.cookie
-    #
-    # @param name   (string)    The name of the cookie to delete / expire
-    #
     deleteCookie = ( name ) ->
         setCookie( name, "", -1 )
 
+    ###*
+    #   A small set of utility functions for working with cookies
+    #
+    #   @author     mdoeswijk
+    #   @module     ppkCookie
+    #   @version    0.1
+    ###
     ppkCookie =
+        ###*
+        #   Set a cookie value
+        #
+        #   @function set
+        #   @param {String}     name            The name of the cookie
+        #   @param {String}     value           The value of the cookie
+        #   @param {Number}     days            In how many days should the cookie expire
+        #
+        #   @return None
+        #
+        ###
         "set":    setCookie
+
+        ###*
+        #   Retrieves a cookie value
+        #
+        #   @function get
+        #   @param {String}     name            The name of the cookie
+        #
+        #   @return None
+        #
+        ###
         "get":    getCookie
+
+        ###*
+        #   Expires a cookie
+        #
+        #   @function delete
+        #   @param {String}     name            The name of the cookie
+        #
+        #   @return None
+        #
+        ###
         "delete": deleteCookie
 )
